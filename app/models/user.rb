@@ -5,4 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :publications
   has_many :comments
+
+  def full_map
+    {
+      name: name,
+      email: masked_email
+    }
+  end
+
+  def masked_email
+    email.gsub(/.{2}@/, '**@')
+  end
 end

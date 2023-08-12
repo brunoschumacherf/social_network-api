@@ -8,4 +8,11 @@ Rails.application.routes.draw do
   post 'users/signin'
   delete 'users/signout'
   patch 'users/update'
+
+  post 'publications/create'
+  get 'publications/show/:id', to: 'publications#show'
+  get 'publications', to: 'publications#get_all'
+  delete 'publications/:id', to: 'publications#destroy'
+  patch 'publications/:id', to: 'publications#update'
+  get 'publications/my_publications'
 end

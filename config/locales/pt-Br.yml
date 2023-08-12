@@ -234,3 +234,68 @@ pt-BR:
         one: "O campo %{fields} já está em uso."
         many: "Os campos %{fields} já estão em uso."
       default: "Falha ao salvar usuário."
+  dry_validation:
+    errors:
+      unexpected_key: "não é permitido"
+      array?: "tem que ser um Array"
+      empty?: "tem que estar vazio"
+      excludes?: "não pode incluir %{value}"
+      excluded_from?:
+        arg:
+          default: "não deve ser um dos: %{list}"
+          range: "não deve ser um dos: %{list_left} - %{list_right}"
+      exclusion?: "não deve ser um dos: %{list}"
+      eql?: "tem que ser equal to %{left}"
+      not_eql?: "não deve ser igual a %{left}"
+      filled?: "tem que ser preenchido"
+      format?: "está em um formato inválido"
+      number?: "tem que ser um número"
+      odd?: "tem que ser impar"
+      even?: "tem que ser par"
+      gt?: "tem que ser maior que %{num}"
+      gteq?: "tem que ser maior ou igual a %{num}"
+      hash?: "tem que ser uma Hash"
+      included_in?:
+        arg:
+          default: "tem que ser ser um de: %{list}"
+          range: "tem que ser ser um de: %{list_left} - %{list_right}"
+      inclusion?: "tem que ser ser um de: %{list}"
+      includes?: "deve incluir %{value}"
+      bool?: "tem que ser um Booleano"
+      true?: "tem que ser true"
+      false?: "tem que ser false"
+      int?: "tem que ser um Integer"
+      float?: "tem que ser um Float"
+      decimal?: "tem que ser um Decimal"
+      date?: "tem que ser um Date"
+      date_time?: "tem que ser um DateTime"
+      time?: "tem que ser um Time"
+      key?: "não encontrado"
+      attr?: "não encontrado"
+      lt?: "tem que ser menor que %{num}"
+      lteq?: "tem que ser menor ou igual que %{num}"
+      max_size?: "o tamanho não pode ser maior que %{num}"
+      max_bytesize?: "Bytesize não pode ser maior que %{num}"
+      min_size?: "o tamanho não pode ser menor que %{num}"
+      min_bytesize?: "Bytesize tamanho não pode ser menor que %{num}"
+      nil?: "tem que que um Nil"
+      str?: "tem que ser uma String"
+      type?: "tem que do tipo %{type}"
+      respond_to?: "deve responder ao método %{method}"
+      size?:
+        arg:
+          default: "o tamanho tem que ser %{size}"
+          range: "o tamanho tem que estar entre %{size_left} - %{size_right}"
+        value:
+          string:
+            arg:
+              default: "comprimento tem que ser %{size}"
+              range: "comprimento tem que estar entre %{size_left} - %{size_right}"
+      bytesize?:
+        arg:
+          default: "tem que ter %{size} bytes de tamanho"
+          range: "tem que estar entre %{size_left} - %{size_right} bytes de tamanho"
+      uuid_v4?: "não é um UUID válido"
+      not:
+        empty?: "não pode estar vazio"
+
