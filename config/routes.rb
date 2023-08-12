@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   post 'user/register'
   post 'user/signin'
+  delete 'user/signout'
 end

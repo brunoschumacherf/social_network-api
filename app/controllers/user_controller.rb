@@ -28,4 +28,9 @@ class UserController < ApiController
       end
     end
   end
+
+  def signout
+    sign_out
+    render json: { message: 'Usuário deslogado com sucesso' }, status: 200
+  end
 end
