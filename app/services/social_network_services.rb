@@ -1,15 +1,16 @@
-class SocialNetworkService
+class SocialNetworkServices
   require 'dry/monads/result'
   require 'dry/matcher/result_matcher'
   include Dry::Monads[:result, :do]
 
   def self.call(*args, &block)
     result = new(*args, &block).call
-
-    Rails.logger.info "\n
-                        ############### Failure Service #{self} ###############\n
-                        step: #{result.failure.first}\n
-                        reason: #{result.failure.last}\n"
+    if result.failure?
+      Rails.logger.info "\n
+                          ############### Failure Service #{self} ###############\n
+                          step: #{result.failure.first}\n
+                          reason: #{result.failure.last}\n"
+    end
 
     result.failure << {} if result.failure?
 

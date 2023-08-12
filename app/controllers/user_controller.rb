@@ -1,0 +1,16 @@
+class UserController < ApiController
+  def register
+    UserServices::Register.call(params) do |on|
+      on.failure do |_step, failure, result|
+        result[:failure] = failure
+        result[:message] = 'Não foi possível cadastrar o usuário'
+        render json: result, status: 400
+      end
+
+      on.success do |presenter, user|
+        sign_in(user)
+        render json: presenter, status: 200
+      end
+    end
+  end
+end
