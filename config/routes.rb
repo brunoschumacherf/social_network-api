@@ -15,4 +15,9 @@ Rails.application.routes.draw do
   delete 'publications/:id', to: 'publications#destroy'
   patch 'publications/:id', to: 'publications#update'
   get 'publications/my_publications'
+
+  post 'comments/create'
+  get 'comments/show/:id', to: 'comments#show'
+  delete 'comments/:id', to: 'comments#destroy'
+  patch 'comments/:id', to: 'comments#update'
 end
