@@ -1,4 +1,4 @@
-class UserController < ApiController
+class UsersController < ApiController
   def register
     UserServices::Register.call(params) do |on|
       on.failure do |_step, failure, result|

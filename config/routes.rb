@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  post 'user/register'
-  post 'user/signin'
-  delete 'user/signout'
-  patch 'user/update'
+  post 'users/register'
+  post 'users/signin'
+  delete 'users/signout'
+  patch 'users/update'
 end
