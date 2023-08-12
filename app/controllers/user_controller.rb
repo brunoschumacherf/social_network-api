@@ -29,6 +29,21 @@ class UserController < ApiController
     end
   end
 
+  def update
+    UserServices::Update.call(params, current_user) do |on|
+      on.failure do |_step, failure, result|
+        result[:failure] = failure
+        result[:message] = 'Não foi possível atualizar o usuário'
+        render json: result, status: 400
+      end
+
+      on.success do |presenter, user|
+        sign_in(user)
+        render json: presenter, status: 200
+      end
+    end
+  end
+
   def signout
     sign_out
     render json: { message: 'Usuário deslogado com sucesso' }, status: 200

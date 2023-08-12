@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   post 'user/register'
   post 'user/signin'
   delete 'user/signout'
+  patch 'user/update'
 end
