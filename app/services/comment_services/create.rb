@@ -16,7 +16,14 @@ module CommentServices
     def validate_params(params)
       parameters do
         required(:comment).filled(:string)
+        required(:commentable_id).filled(:integer)
+        required(:commentable_type).filled(:string)
         optional(:archive)
+      end
+      rules do
+        rule(:commentable_type) do
+          key.failure('must be a valid type') unless %w[Publication Comment].include?(params[:commentable_type])
+        end
       end
       validate(params.to_enum)
     end
@@ -24,7 +31,6 @@ module CommentServices
     def create_comment(params, user)
       comment = Comment.new(params)
       comment.user = user
-      comment.commentable = 0
       comment.save(validate: false)
       # comment.save ? Success(comment) : Failure(comment.errors.full_messages)
       Success(comment)
@@ -32,7 +38,7 @@ module CommentServices
 
     def presenter(comment)
       {
-        message: 'Publication created successfully',
+        message: 'Comment created successfully',
         data: comment.full_map
       }
     end

@@ -7,7 +7,7 @@ module CommentServices
 
     def call
       valid_params = yield validate_params(@params.permit!.to_h)
-      yield find_comment(valid_params[:id])
+      comment = yield find_comment(valid_params[:id])
       yield valid_user_for_comment(comment, @user)
       comment = yield update_comment(comment, valid_params)
       Success(presenter(comment))
@@ -26,7 +26,11 @@ module CommentServices
 
     def find_comment(id)
       comment = Comment.find_by(id: id)
-      comment ? Success(comment) : Failure[:comment_not_found, 'comment not found']
+      if comment
+        Success(comment)
+      else
+        Failure[:comment_not_found, 'Comment not found']
+      end
     end
 
     def valid_user_for_comment(comment, user)
@@ -38,9 +42,11 @@ module CommentServices
     end
 
     def update_comment(comment, params)
-      return Success() if comment.user_id == user.id
-
-      Failure({errors: "You can't delete this comment"})
+      if comment.update(params.except(:id))
+        Success(comment)
+      else
+        Failure[:comment_not_updated, comment.errors.full_messages]
+      end
     end
 
     def presenter(comment)
