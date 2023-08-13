@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2023-08-13T00:15:35-03:00">2023-08-13T00:15:35-03:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2023-08-13T04:05:33-03:00">2023-08-13T04:05:33-03:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,7 +23,7 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  21.82%
+  22.25%
 </span>
 
      </span>
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>715</b> relevant lines,
-    <span class="green"><b>156</b> lines covered</span> and
+    <b>719</b> relevant lines,
+    <span class="green"><b>160</b> lines covered</span> and
     <span class="red"><b>559</b> lines missed. </span>
     (<span class="red">
-  21.82%
+  22.25%
 </span>
 )
   </div>
@@ -95,11 +95,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#6b55fc0c8cd953d6900dffc335b16e33ddbc7669" class="src_link" title="app/controllers/api_controller.rb">app/controllers/api_controller.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">1</td>
-            <td class="cell--number">1</td>
+            <td class="cell--number">9</td>
+            <td class="cell--number">5</td>
+            <td class="cell--number">5</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">1.60</td>
             
           </tr>
         
@@ -412,14 +412,14 @@
     <span class="group_name">Controllers</span>
     (<span class="covered_percent">
       <span class="red">
-  19.75%
+  21.74%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.33
+         0.37
        </span>
     </span> hits/line
     )
@@ -432,11 +432,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>157</b> relevant lines,
-    <span class="green"><b>31</b> lines covered</span> and
+    <b>161</b> relevant lines,
+    <span class="green"><b>35</b> lines covered</span> and
     <span class="red"><b>126</b> lines missed. </span>
     (<span class="red">
-  19.75%
+  21.74%
 </span>
 )
   </div>
@@ -462,11 +462,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#6b55fc0c8cd953d6900dffc335b16e33ddbc7669" class="src_link" title="app/controllers/api_controller.rb">app/controllers/api_controller.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">1</td>
-            <td class="cell--number">1</td>
+            <td class="cell--number">9</td>
+            <td class="cell--number">5</td>
+            <td class="cell--number">5</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">1.60</td>
             
           </tr>
         
@@ -1375,8 +1375,8 @@
     
 
     <div class="t-line-summary">
-      <b>1</b> relevant lines.
-      <span class="green"><b>1</b> lines covered</span> and
+      <b>5</b> relevant lines.
+      <span class="green"><b>5</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -1399,7 +1399,84 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="2">
+          <li class="covered" data-hits="1" data-linenumber="2">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  before_action :check_user, except: %i[signin register]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="3">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="4">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def check_user</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="4" data-linenumber="5">
+            <span class="hits">4</span>
+            
+
+            
+
+            <code class="ruby">    return if current_user</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="6">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="7">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    render json: { message: &#39;Usuário não autenticado&#39; }, status: 401</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="8">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="9">
             
             
 

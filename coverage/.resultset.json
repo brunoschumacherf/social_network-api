@@ -89,6 +89,13 @@
       "/home/bruno/social_network-api/app/controllers/api_controller.rb": {
         "lines": [
           1,
+          1,
+          null,
+          1,
+          4,
+          null,
+          1,
+          null,
           null
         ]
       },
@@ -1109,6 +1116,6 @@
         }
       }
     },
-    "timestamp": 1691896535
+    "timestamp": 1691910333
   }
 }

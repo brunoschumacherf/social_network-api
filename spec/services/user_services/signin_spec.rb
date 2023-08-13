@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "User Signin API", type: :request do
+RSpec.describe 'User Signin API', type: :request do
   before do
     User.create(
       name: 'John Doe',
@@ -10,8 +10,8 @@ RSpec.describe "User Signin API", type: :request do
     )
   end
 
-  describe "POST /users/signin" do
-    context "with valid params" do
+  describe 'POST /users/signin' do
+    context 'with valid params' do
       let(:valid_params) do
         {
           email: 'john@example.com',
@@ -19,17 +19,17 @@ RSpec.describe "User Signin API", type: :request do
         }
       end
 
-      it "logs in the user" do
-        post "/users/signin", params: valid_params
+      it 'logs in the user' do
+        post '/users/signin', params: valid_params
         result = JSON(response.body)
         expect(response).to have_http_status(200)
-        expect(result["message"]).to eq("User successfully logged in")
-        expect(result["data"]["name"]).to eq("John Doe") # Update with the actual name
-        expect(result["data"]["email"]).to eq("john@example.com")
+        expect(result['message']).to eq('User successfully logged in')
+        expect(result['data']['name']).to eq('John Doe') # Update with the actual name
+        expect(result['data']['email']).to eq('john@example.com')
       end
     end
 
-    context "with invalid params" do
+    context 'with invalid params' do
       let(:invalid_params) do
         {
           email: 'invalid@example.com',
@@ -37,16 +37,16 @@ RSpec.describe "User Signin API", type: :request do
         }
       end
 
-      it "returns error messages" do
-        post "/users/signin", params: invalid_params
+      it 'returns error messages' do
+        post '/users/signin', params: invalid_params
         expect(response).to have_http_status(400)
         result = JSON(response.body)
-        expect(result["message"]).to eq("Não foi possível logar o usuário")
-        expect(result["failure"]).to eq("User not found")
+        expect(result['message']).to eq('Não foi possível logar o usuário')
+        expect(result['failure']).to eq('User not found')
       end
     end
 
-    context "invalid password" do
+    context 'invalid password' do
       let(:invalid_params) do
         {
           email: 'john@example.com',
@@ -54,12 +54,12 @@ RSpec.describe "User Signin API", type: :request do
         }
       end
 
-      it "returns error messages" do
-        post "/users/signin", params: invalid_params
+      it 'returns error messages' do
+        post '/users/signin', params: invalid_params
         expect(response).to have_http_status(400)
         result = JSON(response.body)
-        expect(result["message"]).to eq("Não foi possível logar o usuário")
-        expect(result["failure"]).to eq("Invalid password")
+        expect(result['message']).to eq('Não foi possível logar o usuário')
+        expect(result['failure']).to eq('Invalid password')
       end
     end
   end
