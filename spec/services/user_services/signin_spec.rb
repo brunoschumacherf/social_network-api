@@ -41,7 +41,6 @@ RSpec.describe "User Signin API", type: :request do
         post "/users/signin", params: invalid_params
         expect(response).to have_http_status(400)
         result = JSON(response.body)
-        puts result
         expect(result["message"]).to eq("Não foi possível logar o usuário")
         expect(result["failure"]).to eq("User not found")
       end
