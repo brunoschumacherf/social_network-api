@@ -1,25 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Documentação do postman
+```
+    https://www.postman.com/bold-desert-925648/workspace/teste/collection/24048916-fd0bf9c3-f160-493c-8226-50e499cf9e96?action=share&creator=24048916
+```
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# social_network-api

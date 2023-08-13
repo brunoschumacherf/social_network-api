@@ -1,5 +1,5 @@
 class Publication < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   has_many :comments, as: :commentable
 
   def map_create
@@ -20,6 +20,7 @@ class Publication < ApplicationRecord
     }
     data[:archive] = archive if archive
     data[:user] = user.full_map
+    data[:comments] = Comment.map_comments(comments)
     data
   end
 
