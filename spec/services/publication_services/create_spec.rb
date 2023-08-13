@@ -1,23 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Publications Create', type: :request do
-  describe 'publication' do
-    let(:user) do User.create(
-      name: 'John Doe',
-      email: 'test@example.com',
-      password: '@Aa12345',
-      password_confirmation: '@Aa12345'
-    )
-    end
-
+  describe 'POST /publications/create' do
     context 'without authentication' do
       it 'returns unauthorized' do
-        patch '/users/update'
+        post '/publications/create'
         expect(response).to have_http_status(401)
       end
     end
 
     context 'with valid params' do
+      let(:user) { create(:user) }
       let(:valid_params) do
         {
           title: 'Title',
@@ -26,7 +19,8 @@ RSpec.describe 'Publications Create', type: :request do
       end
 
       before { sign_in user }
-      it 'returns success' do
+
+      it 'creates a new publication' do
         post '/publications/create', params: valid_params
         result = JSON(response.body)
         expect(response).to have_http_status(200)
@@ -37,13 +31,16 @@ RSpec.describe 'Publications Create', type: :request do
     end
 
     context 'with invalid params' do
+      let(:user) { create(:user) }
       let(:invalid_params) do
         {
           title: '',
           description: 'Description of the publication'
         }
       end
+
       before { sign_in user }
+
       it 'returns error' do
         post '/publications/create', params: invalid_params
         result = JSON(response.body)

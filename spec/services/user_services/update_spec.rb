@@ -1,15 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'User Update API', type: :request do
-  describe 'PATCH /users/update' do
-    let(:user) do User.create(
+  let(:user) do
+    User.create(
       name: 'John Doe',
       email: 'test@example.com',
       password: '@Aa12345',
       password_confirmation: '@Aa12345'
     )
-   end
+  end
 
+  describe 'PATCH /users/update' do
     context 'without authentication' do
       it 'returns unauthorized' do
         patch '/users/update'
@@ -30,7 +31,7 @@ RSpec.describe 'User Update API', type: :request do
       before { sign_in user }
       it 'updates the user' do
         patch '/users/update', params: valid_params
-        result = JSON(response.body)
+        result = JSON.parse(response.body)
         expect(response).to have_http_status(200)
         expect(result['message']).to eq('User updated successfully')
         expect(result['data']['name']).to eq('New Name')
@@ -51,7 +52,7 @@ RSpec.describe 'User Update API', type: :request do
       before { sign_in user }
       it 'returns invalid password error' do
         patch '/users/update', params: invalid_current_password_params
-        result = JSON(response.body)
+        result = JSON.parse(response.body)
         expect(response).to have_http_status(400)
         expect(result['errors']['step']['invalid_password']).to eq('Invalid password')
         expect(result['message']).to eq('Não foi possível atualizar o usuário')
@@ -70,7 +71,7 @@ RSpec.describe 'User Update API', type: :request do
       before { sign_in user }
       it 'returns error messages' do
         patch '/users/update', params: invalid_params
-        result = JSON(response.body)
+        result = JSON.parse(response.body)
         expect(response).to have_http_status(400)
         expect(result['message']).to eq('Não foi possível atualizar o usuário')
         expect(result['failure']['password_confirmation']).to include('must be equal to password')

@@ -6,19 +6,19 @@ RSpec.describe 'User Registration API', type: :request do
       let(:valid_params) do
         {
           name: 'John Doe',
-          email: 'john@example.com',
-          password: '@Aa123456',
-          password_confirmation: '@Aa123456'
+          email: "#{Random.rand(1000)}test@test.com",
+          password: '@Aa12345',
+          password_confirmation: '@Aa12345'
         }
       end
 
       it 'registers a new user' do
         post '/users/register', params: valid_params
-        result = JSON(response.body)
+        result = JSON.parse(response.body)
 
         expect(response).to have_http_status(200)
-        expect(result['data']['name']).to eq('John Doe')
-        expect(result['data']['email']).to eq('john@example.com')
+        expect(result['data']['name']).to eq(valid_params[:name])
+        expect(result['data']['email']).to eq(valid_params[:email])
       end
     end
 
@@ -35,8 +35,7 @@ RSpec.describe 'User Registration API', type: :request do
       it 'returns error messages' do
         post '/users/register', params: invalid_params
         expect(response).to have_http_status(400)
-        result = JSON(response.body)
-        puts result
+        result = JSON.parse(response.body)
         expect(result['message']).to eq('Não foi possível cadastrar o usuário')
         expect(result['failure']['password_confirmation']).to eq(['must be equal to password'])
         expect(result['failure']['email']).to eq(['must be a valid email'])

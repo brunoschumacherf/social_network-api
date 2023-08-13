@@ -7,10 +7,9 @@ module CommentServices
 
     def call
       validate_params = yield validate_params(@params.permit!.to_h)
-      comments = yield find_comments(validate_params[:id])
-      yield valid_user_for_comments(comments, @user)
+      comments = yield find_comments(validate_params[:id], @user)
       yield delete_comments(comments)
-      Success({message: 'comments deleted successfully'})
+      Success({message: 'Comment deleted successfully'})
     end
 
     private
@@ -22,19 +21,13 @@ module CommentServices
       validate(params.to_enum)
     end
 
-    def find_comments(id)
-      comments = Comment.where(id: id).first
+    def find_comments(id, user)
+      comments = user.comments.find_by(id: id)
       if comments.present?
         Success(comments)
       else
         Failure[:find_comment, 'comments not found']
       end
-    end
-
-    def valid_user_for_comments(comments, user)
-      return Success() if comments.user_id == user.id
-
-      Failure[:invalid_user, "You can't delete this comments"]
     end
 
     def delete_comments(comments)

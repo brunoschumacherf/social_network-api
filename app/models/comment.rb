@@ -6,8 +6,7 @@ class Comment < ApplicationRecord
   def full_map
     {
       id: id,
-      comment: comment,
-      archive: Tempfile.new(archive).path,
+      comment: comment
     }
   end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User Signin API', type: :request do
-  before do
+  let(:user) do
     User.create(
       name: 'John Doe',
       email: 'john@example.com',
@@ -14,18 +14,18 @@ RSpec.describe 'User Signin API', type: :request do
     context 'with valid params' do
       let(:valid_params) do
         {
-          email: 'john@example.com',
+          email: user.email,
           password: '@Aa123456'
         }
       end
 
       it 'logs in the user' do
         post '/users/signin', params: valid_params
-        result = JSON(response.body)
+        result = JSON.parse(response.body)
         expect(response).to have_http_status(200)
         expect(result['message']).to eq('User successfully logged in')
-        expect(result['data']['name']).to eq('John Doe') # Update with the actual name
-        expect(result['data']['email']).to eq('john@example.com')
+        expect(result['data']['name']).to eq(user.name)
+        expect(result['data']['email']).to eq(user.email)
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe 'User Signin API', type: :request do
       it 'returns error messages' do
         post '/users/signin', params: invalid_params
         expect(response).to have_http_status(400)
-        result = JSON(response.body)
+        result = JSON.parse(response.body)
         expect(result['message']).to eq('Não foi possível logar o usuário')
         expect(result['failure']).to eq('User not found')
       end
@@ -49,7 +49,7 @@ RSpec.describe 'User Signin API', type: :request do
     context 'invalid password' do
       let(:invalid_params) do
         {
-          email: 'john@example.com',
+          email: user.email,
           password: 'InvalidPassword'
         }
       end
@@ -57,7 +57,7 @@ RSpec.describe 'User Signin API', type: :request do
       it 'returns error messages' do
         post '/users/signin', params: invalid_params
         expect(response).to have_http_status(400)
-        result = JSON(response.body)
+        result = JSON.parse(response.body)
         expect(result['message']).to eq('Não foi possível logar o usuário')
         expect(result['failure']).to eq('Invalid password')
       end

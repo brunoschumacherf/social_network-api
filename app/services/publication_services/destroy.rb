@@ -7,8 +7,7 @@ module PublicationServices
 
     def call
       validate_params = yield validate_params(@params.permit!.to_h)
-      publication = yield find_publication(validate_params[:id])
-      yield valid_user_for_publication(publication, @user)
+      publication = yield find_publication(validate_params[:id], @user)
       yield delete_publication(publication)
       Success({message: 'Publication deleted successfully'})
     end
@@ -22,8 +21,8 @@ module PublicationServices
       validate(params.to_enum)
     end
 
-    def find_publication(id)
-      publication = Publication.where(id: id).first
+    def find_publication(id, user)
+      publication = user.publications.find_by(id: id)
       if publication.present?
         Success(publication)
       else
@@ -31,11 +30,6 @@ module PublicationServices
       end
     end
 
-    def valid_user_for_publication(publication, user)
-      return Success() if publication.user_id == user.id
-
-      Failure[:invalid_user, "You can't delete this publication"]
-    end
 
     def delete_publication(publication)
       if publication.destroy

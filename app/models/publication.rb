@@ -19,7 +19,6 @@ class Publication < ApplicationRecord
       description: description,
     }
     data[:archive] = archive if archive
-    data[:comments] = Comment.map_comments(comments) if comments
     data[:user] = user.full_map
     data
   end

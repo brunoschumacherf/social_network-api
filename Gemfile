@@ -38,6 +38,7 @@ gem 'byebug'
 gem 'active_model_serializers'
 gem 'rspec-rails', '~> 4.0.0'
 gem 'rack-test'
+gem 'factory_bot_rails'
 gem 'simplecov', require: false, group: :test
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -55,4 +56,5 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
 
