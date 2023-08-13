@@ -27,21 +27,21 @@ module PublicationServices
       if publication.present?
         Success(publication)
       else
-        Failure({errors: 'Publication not found'})
+        Failure[:find_publication, 'Publication not found']
       end
     end
 
     def valid_user_for_publication(publication, user)
       return Success() if publication.user_id == user.id
 
-      Failure({errors: "You can't delete this publication"})
+      Failure[:invalid_user, "You can't delete this publication"]
     end
 
     def delete_publication(publication)
       if publication.destroy
         Success()
       else
-        Failure({errors: publication.errors.full_messages.to_sentence})
+        Failure[:delete_publication, ublication.errors.full_messages.to_sentence]
       end
     end
   end

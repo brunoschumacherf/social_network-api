@@ -27,21 +27,21 @@ module CommentServices
       if comments.present?
         Success(comments)
       else
-        Failure({errors: 'comments not found'})
+        Failure[:find_comment, 'comments not found']
       end
     end
 
     def valid_user_for_comments(comments, user)
       return Success() if comments.user_id == user.id
 
-      Failure({errors: "You can't delete this comments"})
+      Failure[:invalid_user, "You can't delete this comments"]
     end
 
     def delete_comments(comments)
       if comments.destroy
         Success()
       else
-        Failure({errors: comments.errors.full_messages.to_sentence})
+        Failure[:delete_comments, comments.errors.full_messages.to_sentence]
       end
     end
   end

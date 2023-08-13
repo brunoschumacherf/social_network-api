@@ -247,7 +247,7 @@ pt-BR:
       exclusion?: "não deve ser um dos: %{list}"
       eql?: "tem que ser equal to %{left}"
       not_eql?: "não deve ser igual a %{left}"
-      filled?: "tem que ser preenchido"
+      filled?: "tem que ser prenchido"
       format?: "está em um formato inválido"
       number?: "tem que ser um número"
       odd?: "tem que ser impar"
@@ -270,7 +270,7 @@ pt-BR:
       date?: "tem que ser um Date"
       date_time?: "tem que ser um DateTime"
       time?: "tem que ser um Time"
-      key?: "não encontrado"
+      key?: "Chave Obrigatória"
       attr?: "não encontrado"
       lt?: "tem que ser menor que %{num}"
       lteq?: "tem que ser menor ou igual que %{num}"
@@ -298,4 +298,5 @@ pt-BR:
       uuid_v4?: "não é um UUID válido"
       not:
         empty?: "não pode estar vazio"
+
 

@@ -41,7 +41,7 @@ module PublicationServices
     def update_publication(publication, params)
       return Success() if publication.user_id == user.id
 
-      Failure({errors: "You can't delete this publication"})
+      Failure[:errors, "You can't delete this publication"]
     end
 
     def presenter(publication)

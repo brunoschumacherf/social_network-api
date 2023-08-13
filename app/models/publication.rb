@@ -2,14 +2,26 @@ class Publication < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :commentable
 
+  def map_create
+    data = {
+      id: id,
+      title: title,
+      description: description
+    }
+    data[:archive] = archive if archive
+    data
+  end
+
   def full_map
-    {
+    data = {
       id: id,
       title: title,
       description: description,
-      archive: Tempfile.new(archive).path,
-      user: user.full_map
     }
+    data[:archive] = archive if archive
+    data[:comments] = Comment.map_comments(comments) if comments
+    data[:user] = user.full_map
+    data
   end
 
   def self.map_publications(publications)

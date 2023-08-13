@@ -21,7 +21,7 @@ module PublicationServices
 
     def find_publication(id)
       publication = Publication.find_by(id: id)
-      return Failure(find_publication: 'Publication not found') unless publication
+      return Failure[:find_publication, 'Publication not found'] unless publication
 
       Success(publication)
     end

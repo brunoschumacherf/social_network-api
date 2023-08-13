@@ -21,7 +21,7 @@ module CommentServices
 
     def find_comments(id)
       comments = Comment.find_by(id: id)
-      return Failure(find_comments: 'comments not found') unless comments
+      return Failure[:find_comments, 'comments not found'] unless comments
 
       Success(comments)
     end

@@ -3,7 +3,7 @@ class CommentsController < ApiController
     CommentServices::Create.call(params, current_user) do |on|
       on.failure do |_step, failure, result|
         result[:failure] = failure
-        result[:message] = 'Não foi possível cadastrar a publicação'
+        result[:message] = 'Não foi possível cadastrar o comentário'
         render json: result, status: 400
       end
 
@@ -17,7 +17,7 @@ class CommentsController < ApiController
     CommentServices::Destroy.call(params, current_user) do |on|
       on.failure do |_step, failure, result|
         result[:failure] = failure
-        result[:message] = 'Não foi possível deletar a publicação'
+        result[:message] = 'Não foi possível deletar o comentário'
         render json: result, status: 400
       end
 
@@ -31,7 +31,7 @@ class CommentsController < ApiController
     CommentServices::Update.call(params, current_user) do |on|
       on.failure do |_step, failure, result|
         result[:failure] = failure
-        result[:message] = 'Não foi possível atualizar a publicação'
+        result[:message] = 'Não foi possível atualizar o comentário'
         render json: result, status: 400
       end
 

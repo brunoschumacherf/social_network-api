@@ -24,7 +24,7 @@ module PublicationServices
 
     def create_publication(params, user)
       publication = Publication.new(params)
-      publication.user = user
+      publication.user_id = user.id
       publication.save
       Success(publication)
     end
@@ -32,7 +32,7 @@ module PublicationServices
     def presenter(publication)
       {
         message: 'Publication created successfully',
-        data: publication.full_map
+        data: publication.map_create
       }
     end
   end
