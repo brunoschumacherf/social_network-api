@@ -46,6 +46,7 @@ RSpec.describe 'Publications Create', type: :request do
         result = JSON(response.body)
         expect(response).to have_http_status(400)
         expect(result['message']).to eq('Não foi possível cadastrar a publicação')
+        expect(result['failure']['title']).to include('tem que ser prenchido')
       end
     end
   end

@@ -27,6 +27,8 @@ RSpec.describe 'Publications Update', type: :request do
         result = JSON.parse(response.body)
         expect(response).to have_http_status(200)
         expect(result['message']).to eq('Publication updated successfully')
+        expect(result['data']['title']).to eq('Test2')
+        expect(result['data']['description']).to eq('Test2')
       end
     end
 
@@ -48,6 +50,8 @@ RSpec.describe 'Publications Update', type: :request do
         result = JSON.parse(response.body)
         expect(response).to have_http_status(400)
         expect(result['message']).to eq('Não foi possível atualizar a publicação')
+        expect(result['failure']['title']).to include('tem que ser prenchido')
+        expect(result['failure']['description']).to include('tem que ser prenchido')
       end
     end
 
@@ -68,9 +72,9 @@ RSpec.describe 'Publications Update', type: :request do
       it 'returns failed' do
         patch "/publications/#{publication.id}", params: invalid_params
         result = JSON.parse(response.body)
-        puts result
         expect(response).to have_http_status(400)
         expect(result['message']).to eq('Não foi possível atualizar a publicação')
+        expect(result['failure']).to eq('Publication not found')
       end
     end
 

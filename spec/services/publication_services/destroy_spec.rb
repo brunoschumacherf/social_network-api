@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Comment Destroy', type: :request do
-  describe 'comment' do
+  describe 'publication' do
     let(:user) { create(:user) }
     let(:user2) { create(:user, email: 'test2@example.com') }
     let(:publication) { create(:publication, user: user) }
-    let(:comment) { create(:comment, user: user, commentable: publication) }
 
     context 'without authentication' do
       it 'returns unauthorized' do
@@ -17,32 +16,31 @@ RSpec.describe 'Comment Destroy', type: :request do
     context 'delete failed params' do
       before { sign_in user }
       it 'returns failed' do
-        delete '/comments/0'
+        delete "/publications/0"
         result = JSON(response.body)
         expect(response).to have_http_status(400)
-        expect(result['message']).to eq('Não foi possível deletar o comentário')
-        expect(result['failure']).to eq('comments not found')
+        expect(result['message']).to eq('Não foi possível excluir a publicação')
       end
     end
 
     context 'delete failed user' do
       before { sign_in user2 }
       it 'returns failed' do
-        delete "/comments/#{comment.id}"
+        delete "/publications/#{publication.id}"
         result = JSON(response.body)
         expect(response).to have_http_status(400)
-        expect(result['message']).to eq('Não foi possível deletar o comentário')
-        expect(result['failure']).to eq('comments not found')
+        expect(result['message']).to eq('Não foi possível excluir a publicação')
+        expect(result['failure']).to eq('Publication not found')
       end
     end
 
     context 'delete successfully' do
       before { sign_in user }
       it 'returns success' do
-        delete "/comments/#{comment.id}"
+        delete "/publications/#{publication.id}"
         result = JSON(response.body)
         expect(response).to have_http_status(200)
-        expect(result['message']).to eq('Comment deleted successfully')
+        expect(result['message']).to eq('Publication deleted successfully')
       end
     end
   end

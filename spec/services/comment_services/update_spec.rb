@@ -26,6 +26,8 @@ RSpec.describe 'Comments Update', type: :request do
         result = JSON(response.body)
         expect(response).to have_http_status(200)
         expect(result['message']).to eq('Comment updated successfully')
+        expect(result['data']['comment']).to eq('Test2')
+        expect(result['data']['user']['name']).to eq(user.name)
       end
     end
 
@@ -42,6 +44,7 @@ RSpec.describe 'Comments Update', type: :request do
         result = JSON(response.body)
         expect(response).to have_http_status(400)
         expect(result['message']).to eq('Não foi possível atualizar o comentário')
+        expect(result['failure']).to eq('Comment not found')
       end
     end
   end

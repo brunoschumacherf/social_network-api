@@ -45,7 +45,7 @@ class CommentsController < ApiController
     CommentServices::Show.call(params) do |on|
       on.failure do |_step, failure, result|
         result[:failure] = failure
-        result[:message] = 'Não foi possível encontrar a publicação'
+        result[:message] = 'Não foi possível encontrar o comentário'
         render json: result, status: 400
       end
 
